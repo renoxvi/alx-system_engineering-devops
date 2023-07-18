@@ -1,15 +1,5 @@
-#!/usr/bin/env bash
 # setup client SSH configuration
 
-file { 'ect/ssh/ssh_config':
-	ensure => present,
-
-content =>"
-
-	#SSH client configuration
-	host*
-	IdentityFile ~/.ssh/school
-	PasswordAuthentication no
-	",
-
+exec { 'echo "PasswordAuthentication no\nIdentityFile ~/.ssh/school" >> /etc/ssh/ssh_config':
+        path    => '/bin/'
 }
